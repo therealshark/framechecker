@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Frame Checker</title>
+    <style>
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+
+        body {
+            background: #bbb;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, Helvetica, sans-serif;
+            overflow: hidden;
+            font-size: 9pt;
+        }
+
+        @media screen and (min-width: 500px) {
+            body {
+                font-size: 12pt;
+            }
+        }
+
+        @media screen and (min-width: 800px) {
+            body {
+                font-size: 15pt;
+            }
+        }
+
+        table {
+            border-collapse: collapse;
+            background: #ddd;
+            margin: 2px;
+        }
+
+        h1,
+        h3 {
+            margin: 0.1rem 0;
+            text-align: center;
+        }
+
+        td {
+            border: 1px solid black;
+            padding: 0.4rem;
+        }
+
+        .break {
+            word-break: break-all;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>FrameChecker</h1>
+    <h3>Url used to load this site</h3>
+    <div class="url"></div>
+    <script>
+        function renderRow(prop, value) {
+            if (typeof (value) == "string" && value.length > 0) {
+                return "<tr><td>" + prop + "</td><td class='break'>" + location[prop] + "</td></tr>";
+            }
+            return '';
+        }
+
+        function render() {
+            var str = "<table>";
+            for (var prop in location) {
+                str += renderRow(prop, location[prop]);
+            }
+            str += "</table>"
+            return str;
+        }
+
+        document.querySelector(".url").innerHTML = render();
+    </script>
+</body>
+
+</html>
